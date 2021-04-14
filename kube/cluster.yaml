@@ -1,0 +1,19 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: "laravel-eks-poc"
+  region: "ap-southeast-1"
+  version: "1.19"
+
+availabilityZones: ["ap-southeast-1a", "ap-southeast-1b", "ap-southeast-1c"]
+
+managedNodeGroups:
+- name: nodegroup
+  desiredCapacity: 1
+  minSize: 1
+  maxSize: 3
+  instanceType: t3.small
+  iam:
+    withAddonPolicies:
+      cloudWatch: true

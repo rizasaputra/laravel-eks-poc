@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-laravel
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: instance
+    alb.ingress.kubernetes.io/group.name: laravel-eks-poc-cluster
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /api/*
+            backend:
+              serviceName: laravel
+              servicePort: 80
